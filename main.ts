@@ -20,27 +20,14 @@ export const series: Serie[] = [
         "https://www.bbc.co.uk/programmes/p065smy4", "documents/AveryEnglishScandal.jpg"),
   ];
 
-
-  let serieTable: HTMLElement = document.getElementById("serie")!;
   let estadisticasTable : HTMLElement = document.getElementById("estadisticas")!;
   let cursosTable: HTMLElement = document.getElementById("cursos")!;
+  const tarjeta = document.getElementById("tarjetas")!;
 
-  for (const serie of series) {
-    mostrarDatosSerie(serie);
-    }
     mostrarCursos(series);
     mostrarEstadisticas(series);
 
-  function mostrarDatosSerie(serie : Serie): void{
-    let tbodySerie = document.createElement("tbody");
-    tbodySerie.innerHTML = `<tr><td>Nombre:</td><td>${serie.name}</td></tr>
-                            <tr><td>Channel:</td><td>${serie.channel}</td></tr>
-                            <tr><td>Seasons:</td><td>${serie.seasons}</td></tr>
-                            <tr><td>Description:</td><td>${serie.description}</td></tr>
-                            <tr><td>Webpage:</td><td>${serie.webpage}</td></tr>
-                            <tr><td>Image:</td><td><img src="${serie.image}" width="200" height="200"></td></tr>`;
-    serieTable.appendChild(tbodySerie);
-  }
+
 
   function mostrarEstadisticas(array: Serie[]):void{
     let numeroElementos: number = 0;
@@ -57,15 +44,56 @@ export const series: Serie[] = [
     for(let index = 0; index < array.length; index++){
       let trElement:HTMLElement = document.createElement("tr");
       trElement.innerHTML = `<td>${array[index].id}</td>
-                            <td>${array[index].name}</td>
+      <td><a class="tarjetaTitulo" link="${array[index].webpage}" cardImage="${array[index].image}" cardDescription="${array[index].description}">${array[index].name}</a></td>
                             <td>${array[index].channel}</td>
                             <td>${array[index].seasons}</td>`;
       cursosTbody.appendChild(trElement);
     }
     cursosTable.appendChild(cursosTbody);
 
-  function mostrarDatosCarta(serie: Serie):void{
-    let tbodyCarta = document.createElement("tbody");
-    }
+    const tituloPeliculas = document.querySelectorAll(".tarjetaTitulo");
+  
+    tituloPeliculas.forEach((name) => {
+        name.addEventListener("click", () => {
+
+            const image = name.getAttribute("cardImage")!;
+            const texto = name.getAttribute("cardDescription")!;
+            const pagina=name.getAttribute("link")!;
+
+            const ImagenAgregar = tarjeta.querySelector(".card-img-top") as HTMLImageElement ;
+            const NombreAgregar = tarjeta.querySelector(".tarjetaTitulo") as HTMLHeadingElement;
+            const DescripcionAgregar = tarjeta.querySelector(".tarjetaDescripcion") as HTMLParagraphElement;
+            const PaginaAgregar = tarjeta.querySelector(".TarjetaLink") as HTMLAnchorElement;
+
+            ImagenAgregar.src = image;
+            console.log(ImagenAgregar.src);
+            NombreAgregar.textContent = name.textContent!;
+            DescripcionAgregar.textContent = texto;
+            PaginaAgregar.href = pagina;
+
+            tarjeta.style.display = "block";
+        });
+
+    });
 
   }
+
+  cursosTable.addEventListener("click", (event) => {
+    const target = event.target as HTMLTableCellElement;
+    if (target.classList.contains("tarjetaTitulo")) {
+        const foto = target.getAttribute("cardImage");
+        const descripcion = target.getAttribute("cardDescription");
+
+        const ImagenAgregar = tarjeta?.querySelector(".card-img-top") as HTMLImageElement;
+        const TituloAgregar = tarjeta?.querySelector(".tarjetaTitulo") as HTMLHeadingElement;
+        const DescripcionAgregar = tarjeta?.querySelector(".tarjetaDescripcion") as HTMLParagraphElement;
+
+        if (ImagenAgregar && TituloAgregar && DescripcionAgregar && tarjeta) {
+            ImagenAgregar.src = foto || "";
+            TituloAgregar.textContent = target.textContent || "";
+            DescripcionAgregar.textContent = descripcion || "";
+
+            tarjeta.style.display = "block";
+        }
+    }
+});
