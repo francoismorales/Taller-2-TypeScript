@@ -14,8 +14,8 @@ for (var _i = 0, series_1 = series; _i < series_1.length; _i++) {
     var serie = series_1[_i];
     mostrarDatosSerie(serie);
 }
-mostrarEstadisticas(series);
 mostrarCursos(series);
+mostrarEstadisticas(series);
 function mostrarDatosSerie(serie) {
     var tbodySerie = document.createElement("tbody");
     tbodySerie.innerHTML = "<tr><td>Nombre:</td><td>".concat(serie.name, "</td></tr>\n                            <tr><td>Channel:</td><td>").concat(serie.channel, "</td></tr>\n                            <tr><td>Seasons:</td><td>").concat(serie.seasons, "</td></tr>\n                            <tr><td>Description:</td><td>").concat(serie.description, "</td></tr>\n                            <tr><td>Webpage:</td><td>").concat(serie.webpage, "</td></tr>\n                            <tr><td>Image:</td><td><img src=\"").concat(serie.image, "\" width=\"200\" height=\"200\"></td></tr>");
@@ -27,7 +27,7 @@ function mostrarEstadisticas(array) {
         numeroElementos += array[index].seasons;
     }
     var trElement = document.createElement("tr");
-    trElement.innerHTML = "<td><b>Seasons average:<b></td><td>".concat(numeroElementos / array.length, "</td>");
+    trElement.innerHTML = "<td>Seasons average: ".concat(numeroElementos / array.length, "</td>");
     estadisticasTable.appendChild(trElement);
 }
 function mostrarCursos(array) {

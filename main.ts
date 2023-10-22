@@ -48,7 +48,7 @@ export const series: Serie[] = [
       numeroElementos += array[index].seasons;
     }
     let trElement:HTMLElement = document.createElement("tr");
-    trElement.innerHTML = `<td><b>Seasons average:</td><td>${numeroElementos/array.length}</td>`;
+    trElement.innerHTML = `<td>Seasons average: ${numeroElementos/array.length}</td>`;
     estadisticasTable.appendChild(trElement);
   }
 
@@ -63,4 +63,9 @@ export const series: Serie[] = [
       cursosTbody.appendChild(trElement);
     }
     cursosTable.appendChild(cursosTbody);
+
+  function mostrarDatosCarta(serie: Serie):void{
+    let tbodyCarta = document.createElement("tbody");
+    }
+
   }
