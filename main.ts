@@ -22,10 +22,14 @@ export const series: Serie[] = [
 
 
   let serieTable: HTMLElement = document.getElementById("serie")!;
+  let estadisticasTable : HTMLElement = document.getElementById("estadisticas")!;
+  let cursosTable: HTMLElement = document.getElementById("cursos")!;
 
   for (const serie of series) {
     mostrarDatosSerie(serie);
     }
+    mostrarCursos(series);
+    mostrarEstadisticas(series);
 
   function mostrarDatosSerie(serie : Serie): void{
     let tbodySerie = document.createElement("tbody");
@@ -36,4 +40,27 @@ export const series: Serie[] = [
                             <tr><td>Webpage:</td><td>${serie.webpage}</td></tr>
                             <tr><td>Image:</td><td><img src="${serie.image}" width="200" height="200"></td></tr>`;
     serieTable.appendChild(tbodySerie);
+  }
+
+  function mostrarEstadisticas(array: Serie[]):void{
+    let numeroElementos: number = 0;
+    for(let index = 0; index < array.length; index++){
+      numeroElementos += array[index].seasons;
+    }
+    let trElement:HTMLElement = document.createElement("tr");
+    trElement.innerHTML = `<td><b>Seasons average:<b></td><td>${numeroElementos/array.length}</td>`;
+    estadisticasTable.appendChild(trElement);
+  }
+
+  function mostrarCursos(array: Serie[]):void{
+    let cursosTbody = document.createElement("tbody");
+    for(let index = 0; index < array.length; index++){
+      let trElement:HTMLElement = document.createElement("tr");
+      trElement.innerHTML = `<td>${array[index].id}</td>
+                            <td>${array[index].name}</td>
+                            <td>${array[index].channel}</td>
+                            <td>${array[index].seasons}</td>`;
+      cursosTbody.appendChild(trElement);
+    }
+    cursosTable.appendChild(cursosTbody);
   }

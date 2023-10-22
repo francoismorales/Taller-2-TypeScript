@@ -3,5 +3,4 @@ export class Serie {
         public seasons: number, public description: string, public webpage: string, public image: string) {
 
         }
-
 }

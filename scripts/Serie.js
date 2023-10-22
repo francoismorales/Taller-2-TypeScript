@@ -8,6 +8,13 @@ var Serie = /** @class */ (function () {
         this.webpage = webpage;
         this.image = image;
     }
+    Serie.prototype.darPromedio = function (array) {
+        var promedio = 0;
+        for (var index = 0; index < array.length; index++) {
+            promedio += array[index].seasons;
+        }
+        return promedio / array.length;
+    };
     return Serie;
 }());
 export { Serie };

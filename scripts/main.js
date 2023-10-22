@@ -8,12 +8,34 @@ export var series = [
     new Serie(6, "A Very English Scandal", "BBC", 2, "A Very English Scandal is a fact-based three-part British television comedy-drama miniseries based on John Preston's book of the same name.", "https://www.bbc.co.uk/programmes/p065smy4", "documents/AveryEnglishScandal.jpg"),
 ];
 var serieTable = document.getElementById("serie");
+var estadisticasTable = document.getElementById("estadisticas");
+var cursosTable = document.getElementById("cursos");
 for (var _i = 0, series_1 = series; _i < series_1.length; _i++) {
     var serie = series_1[_i];
     mostrarDatosSerie(serie);
 }
+mostrarEstadisticas(series);
+mostrarCursos(series);
 function mostrarDatosSerie(serie) {
     var tbodySerie = document.createElement("tbody");
     tbodySerie.innerHTML = "<tr><td>Nombre:</td><td>".concat(serie.name, "</td></tr>\n                            <tr><td>Channel:</td><td>").concat(serie.channel, "</td></tr>\n                            <tr><td>Seasons:</td><td>").concat(serie.seasons, "</td></tr>\n                            <tr><td>Description:</td><td>").concat(serie.description, "</td></tr>\n                            <tr><td>Webpage:</td><td>").concat(serie.webpage, "</td></tr>\n                            <tr><td>Image:</td><td><img src=\"").concat(serie.image, "\" width=\"200\" height=\"200\"></td></tr>");
     serieTable.appendChild(tbodySerie);
+}
+function mostrarEstadisticas(array) {
+    var numeroElementos = 0;
+    for (var index = 0; index < array.length; index++) {
+        numeroElementos += array[index].seasons;
+    }
+    var trElement = document.createElement("tr");
+    trElement.innerHTML = "<td><b>Seasons average:<b></td><td>".concat(numeroElementos / array.length, "</td>");
+    estadisticasTable.appendChild(trElement);
+}
+function mostrarCursos(array) {
+    var cursosTbody = document.createElement("tbody");
+    for (var index = 0; index < array.length; index++) {
+        var trElement = document.createElement("tr");
+        trElement.innerHTML = "<td>".concat(array[index].id, "</td>\n                            <td>").concat(array[index].name, "</td>\n                            <td>").concat(array[index].channel, "</td>\n                            <td>").concat(array[index].seasons, "</td>");
+        cursosTbody.appendChild(trElement);
+    }
+    cursosTable.appendChild(cursosTbody);
 }
