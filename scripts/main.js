@@ -23,9 +23,10 @@ function mostrarEstadisticas(array) {
 }
 function mostrarCursos(array) {
     var cursosTbody = document.createElement("tbody");
-    for (var index = 0; index < array.length; index++) {
+    for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
+        var serie = array_1[_i];
         var trElement = document.createElement("tr");
-        trElement.innerHTML = "<td>".concat(array[index].id, "</td>\n      <td><a class=\"tarjetaTitulo\" link=\"").concat(array[index].webpage, "\" cardImage=\"").concat(array[index].image, "\" cardDescription=\"").concat(array[index].description, "\">").concat(array[index].name, "</a></td>\n                            <td>").concat(array[index].channel, "</td>\n                            <td>").concat(array[index].seasons, "</td>");
+        trElement.innerHTML = "<td>".concat(serie.id, "</td>\n      <td><a class=\"tarjetaTitulo\" link=\"").concat(serie.webpage, "\" cardImage=\"").concat(serie.image, "\" cardDescription=\"").concat(serie.description, "\">").concat(serie.name, "</a></td>\n                            <td>").concat(serie.channel, "</td>\n                            <td>").concat(serie.seasons, "</td>");
         cursosTbody.appendChild(trElement);
     }
     cursosTable.appendChild(cursosTbody);

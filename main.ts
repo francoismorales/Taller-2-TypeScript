@@ -41,12 +41,12 @@ export const series: Serie[] = [
 
   function mostrarCursos(array: Serie[]):void{
     let cursosTbody = document.createElement("tbody");
-    for(let index = 0; index < array.length; index++){
+    for(let serie of array){
       let trElement:HTMLElement = document.createElement("tr");
-      trElement.innerHTML = `<td>${array[index].id}</td>
-      <td><a class="tarjetaTitulo" link="${array[index].webpage}" cardImage="${array[index].image}" cardDescription="${array[index].description}">${array[index].name}</a></td>
-                            <td>${array[index].channel}</td>
-                            <td>${array[index].seasons}</td>`;
+      trElement.innerHTML = `<td>${serie.id}</td>
+      <td><a class="tarjetaTitulo" link="${serie.webpage}" cardImage="${serie.image}" cardDescription="${serie.description}">${serie.name}</a></td>
+                            <td>${serie.channel}</td>
+                            <td>${serie.seasons}</td>`;
       cursosTbody.appendChild(trElement);
     }
     cursosTable.appendChild(cursosTbody);
